@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class GetSearchResults @Inject constructor(private val bookInfoRepository: BookInfoRepository) {
 
-    operator fun invoke(query : String) : Flow<ApiResponse> {
+    suspend operator fun invoke(query : String) : Flow<ApiResponse> {
         Log.e("DOMAIN LAYER","requested!")
         if (query.isBlank()){
             return flow {  }

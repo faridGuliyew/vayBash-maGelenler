@@ -14,14 +14,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeFragmentViewModel @Inject constructor(private val bookInfoRepository: BookInfoRepository) : ViewModel() {
+class HomeFragmentViewModel @Inject constructor(private val getSearchResults: GetSearchResults) : ViewModel() {
 
     private val _searchResults = MutableStateFlow<ApiResponse?>(null)
     val searchResults = _searchResults.asStateFlow()
 
     fun onSearch(query : String) {
         viewModelScope.launch {
-            bookInfoRepository.getSearchResults(query)
+            getSearchResults(query)
         }
     }
 }

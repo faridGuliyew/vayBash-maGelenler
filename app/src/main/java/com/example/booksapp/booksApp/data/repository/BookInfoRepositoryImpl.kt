@@ -12,8 +12,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class BookInfoRepositoryImpl @Inject constructor(private val bookInfoApi: BookInfoApi) : BookInfoRepository{
-    override fun getSearchResults(query: String): Flow<ApiResponse> =
-        flow {
+    override suspend fun getSearchResults(query: String): Flow<ApiResponse> {
+        return flow{
             Log.e("DATA LAYER","isLoading!")
             emit(ApiResponse.Loading)
             try {
@@ -31,4 +31,5 @@ class BookInfoRepositoryImpl @Inject constructor(private val bookInfoApi: BookIn
                 Log.e("DATA LAYER","error2!")
             }
         }
+    }
 }
